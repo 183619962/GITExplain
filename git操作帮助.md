@@ -53,7 +53,7 @@
 
 8.撤销到上一步的提交
 
- - git reset --hard HEAD^
+- git reset --hard HEAD^
  >可以通过git log查看提交日志
 
  >可以通过cat file.txt来查看当前文件的版本信息
@@ -63,6 +63,66 @@
 9.通过上面的操作退回到了上一步，如何再退回来
 
 - git reset --hard 3628164
->后面跟的是commit id的前几位，不需要写全，也不能太短，能唯一标识提交的ID
+ >后面跟的是commit id的前几位，不需要写全，也不能太短，能唯一标识提交的ID
 
+10.撤销修改
+
+- git checkout -- file.txt
+ >将暂存区的修改回退到工作区
+
+ >此撤销只适用于提交到本地仓库，但是还未提交的远程服务器仓库
+
+ >然后通过第8、第9点操作，回退到之前的版本
+
+11.删除文件及恢复文件
+
+- git rm file.txt
+ >将文件从本地版本库删除
+
+- git checkout --file.txt
+ >将删除的文件从缓存区还原至工作区
+
+
+12.创建远程仓库（以github为例）
+
+- 在github上面创建一个仓库
+ >登录github
+
+ >点击"Create a new repo”按钮
+
+ >点击“Create repository”按钮创建一个仓库（如创建一个GITExplain的仓库）
+
+- 将github上面的仓库与本地的仓库做关联
+ >git remote add origin git@github.com:账户名/GITExplain.git
+
+13.**将本地仓库的代码提交到服务器仓库**
+
+- git push -u origin master
+ >提交之前，需要将本地工作区的代码提交到本地仓库，然后将本地仓库的代码提交至服务器仓库。如果工作区的代码没有commit到本地仓库，是无法提交值服务器仓库的。
+
+14.创建一个分支
+
+- git checkout -b dev
+ >创建一个分支，并切换到相应的分支，相当于如下2条指令：
+
+ >git branch dev(创建一个分支)
+
+ >git checkout dev（切换到相应的分支）
+
+
+15.查看或切换当前分支
+
+- git branch
+ >查看分支
+
+- git checkout 分支名（如：git checkout master）
+ >切换到指定分支
+
+16.合并分支（将分支上面的内容合并到主分支master上面）
+
+- git merge dev
+
+17.删除分支
+
+- git branch -d dev
 
